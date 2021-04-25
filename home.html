@@ -34,6 +34,46 @@
             <h3 class="tempmin_max">23 | 45</h3>
         </div>
     </div>
+
+    <script>
+        const currDate = document.getElementById("date")
+        let weathercon = document.getElementsByClassName("weathercon")
+        const tempStatus = "Clouds"
+
+        const getCurrentDay = () => {
+
+            var weekdays = ["Sunday", "MOnday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            let currentTime = new Date();
+            let day = weekdays[currentTime.getDay()]
+            return day
+        }
+
+        const getCurrentTime = () => {
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Now", "Dec"]
+
+            var now = new Date()
+            var month = months[now.getMonth() + 1]
+            var day = now.getDate()
+
+            let hours = now.getHours()
+            let mins = now.getMinutes()
+
+            let period = "AM"
+
+            if (hours > 11) {
+                period = "PM"
+                if (hours > 12) hours -= 12
+            }
+
+            if (mins < 10) {
+                mins = "0" + mins
+            }
+
+            return `${month} ${day} | ${hours}:${mins}${period}`
+        }
+
+        currDate.innerHTML = getCurrentTime() + " | " + getCurrentDay()
+    </script>
 </body>
 
 </html>
